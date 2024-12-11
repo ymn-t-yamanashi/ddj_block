@@ -30,10 +30,11 @@ defmodule DdjBlock do
     draw_rectangle_lines_ex(rectangle, 1, %{r: 0, g: 255, b: 0, a: 255})
   end
 
-  def midi_in(_input) do
+  def midi_in(input) do
     receive do
       v ->
         IO.inspect(v)
+      midi_in(input)
     end
   end
 end
