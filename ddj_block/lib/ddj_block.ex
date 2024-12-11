@@ -69,7 +69,7 @@ defmodule DdjBlock do
     """
 
     Web.send!(socket, {:text, data})
-    Process.sleep(250)
+    # Process.sleep(250)
     socket
   end
 
