@@ -6,10 +6,19 @@ defmodule DdjBlock do
   use Rayex
 
   def main() do
+    Task.async(fn -> ddj() end)
+    t = Task.async(fn -> maing() end)
+    Task.await(t , 500000)
+  end
+
+  defp ddj() do
     {_, input} = PortMidi.open(:input, "DDJ-FLX4 MIDI 1")
     PortMidi.listen(input, self())
     midi_in(input)
     PortMidi.close(:input, input)
+  end
+
+  defp maing() do
     init_window(800, 800, "DdjBlock")
     main_loop(true)
   end
@@ -34,6 +43,7 @@ defmodule DdjBlock do
     receive do
       {^input, [{{176, 33, 65}, _}]} ->
         IO.inspect("右")
+
       {^input, [{{176, 33, 63}, _}]} ->
         IO.inspect("左")
     end
