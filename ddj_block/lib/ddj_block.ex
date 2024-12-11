@@ -10,8 +10,8 @@ defmodule DdjBlock do
     PortMidi.listen(input, self())
     midi_in(input)
     PortMidi.close(:input, input)
-    init_window(800, 800, "DdjBlock")
-    main_loop(true)
+    # init_window(800, 800, "DdjBlock")
+    # main_loop(true)
   end
 
   defp main_loop(true) do
@@ -38,7 +38,8 @@ defmodule DdjBlock do
       {^input, [{{176, 33, 63}, _}]} ->
         IO.inspect("左")
         midi_in(input)
-      _ ->
+      a ->
+        IO.inspect(a)
         midi_in(input)
     end
   end
