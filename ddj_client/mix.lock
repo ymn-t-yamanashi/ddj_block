@@ -1,5 +1,0 @@
-%{
-  "certifi": {:hex, :certifi, "2.13.0", "e52be248590050b2dd33b0bb274b56678f9068e67805dca8aa8b1ccdb016bbf6", [:rebar3], [], "hexpm", "8f3d9533a0f06070afdfd5d596b32e21c6580667a492891851b0e2737bc507a1"},
-  "portmidi": {:hex, :portmidi, "5.1.2", "17a70db5d09885b15f841f878e2f4622996c02cf05ffeb90173d69d38f2589a8", [:make, :mix], [], "hexpm", "988044c7248883db855f129cd784698a300a9b86d4245164449e574545ec7de0"},
-  "socket2": {:hex, :socket2, "2.1.2", "a5fd170965ba66350857aaea68cd31984b9959633947a2245ccda8f8e93f8276", [:mix], [{:certifi, "~> 2.12", [hex: :certifi, repo: "hexpm", optional: false]}], "hexpm", "32e5260e5c6cbc1349c3bbe7282ba3a5c03e0eb7b9fa5fafabcb44caa5a49694"},
-}
