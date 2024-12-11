@@ -19,6 +19,7 @@ defmodule DdjServerWeb.DdjSocket do
   # See the [`Channels guide`](https://hexdocs.pm/phoenix/channels.html)
   # for further details.
 
+  channel "ddj:lobby", DdjServerWeb.DdjSocket.DdjChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
