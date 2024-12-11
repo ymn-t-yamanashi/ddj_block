@@ -32,9 +32,14 @@ defmodule DdjBlock do
 
   def midi_in(input) do
     receive do
-      v ->
-        IO.inspect(v)
-      midi_in(input)
+      {^input, [{{176, 33, 65}, _}]} ->
+        IO.inspect("右")
+        midi_in(input)
+      {^input, [{{176, 33, 63}, _}]} ->
+        IO.inspect("左")
+        midi_in(input)
+      _ ->
+        midi_in(input)
     end
   end
 end
