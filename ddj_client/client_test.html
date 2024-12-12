@@ -1,0 +1,34 @@
+<html>
+<script>
+ 
+    const ws = new WebSocket('ws://localhost:4000/socket/websocket?token=undefined&vsn=2.0.0')
+
+    // 接続後にphx_joinを送る
+    ws.onopen = () => {
+        ws.send('["","","ddj:lobby","phx_join",{}]');
+    };
+
+    // htmlロード後
+    window.addEventListener('load', function () {
+        const text = document.querySelector("#text")
+        // テキストボックスでEnterキーが押されたら、テキストボックスの内容を送信
+        text.addEventListener("keypress", event => {
+            if (event.key !== 'Enter') return
+            data = '["","","ddj:lobby","new_msg",{"body":"' + text.value + '"}]'
+            ws.send(data)
+            text.value = ""
+        })
+    });
+
+    // 受信時にdevタグの内容に追加
+    ws.onmessage = (event) => {
+        const msg = document.querySelector("#msg")
+        msg.innerHTML = event.data + "<br>" + msg.innerHTML
+    };
+
+</script>
+<input id="text" type="text">
+<div id="msg">
+</div>
+
+</html>
