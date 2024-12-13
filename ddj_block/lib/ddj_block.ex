@@ -24,13 +24,12 @@ defmodule DdjBlock do
   def socket_loop(socket) do
     {_, text} = Socket.Web.recv!(socket)
 
-    v =
-      text
-      |> Jason.decode!()
-      |> Enum.at(4)
-      |> Map.get("body", "0.0")
-      |> String.to_float()
-      |> add_state()
+    text
+    |> Jason.decode!()
+    |> Enum.at(4)
+    |> Map.get("body", "0.0")
+    |> String.to_float()
+    |> add_state()
 
     socket_loop(socket)
   end
