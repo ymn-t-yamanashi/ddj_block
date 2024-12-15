@@ -6,6 +6,8 @@ defmodule DdjBlock do
   use Rayex
   alias Socket.Web
 
+  @sleep 10
+
   def main() do
     Agent.start_link(fn -> 400.0 end, name: __MODULE__)
     socket = Web.connect!("localhost", 4000, path: "/socket/websocket?token=undefined&vsn=2.0.0")
@@ -40,7 +42,7 @@ defmodule DdjBlock do
     draw()
     end_drawing()
 
-    Process.sleep(10)
+    Process.sleep(@sleep)
     main_loop(!window_should_close())
   end
 
