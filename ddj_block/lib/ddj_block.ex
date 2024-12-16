@@ -7,6 +7,7 @@ defmodule DdjBlock do
   alias Socket.Web
 
   @sleep 10
+  @color %{r: 0, g: 255, b: 0, a: 255}
 
   def main() do
     Agent.start_link(fn -> 400.0 end, name: __MODULE__)
@@ -50,7 +51,7 @@ defmodule DdjBlock do
 
   defp draw() do
     rectangle = %Rectangle{x: get_state(), y: 700.0, width: 100.0, height: 50.0}
-    draw_rectangle_lines_ex(rectangle, 1, %{r: 0, g: 255, b: 0, a: 255})
+    draw_rectangle_lines_ex(rectangle, 1, @color)
   end
 
   def send_data(socket, data) do
