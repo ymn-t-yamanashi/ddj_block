@@ -93,7 +93,7 @@ defmodule GameTest do
     ]
 
     assert Game.collided_with_filter(x1, y1, w1, h1, judgments) ==
-      {true, [ [111, 111, 10, 10]]}
+             {true, [[111, 111, 10, 10]]}
   end
 
   test "collided_with_filter false and false return false" do

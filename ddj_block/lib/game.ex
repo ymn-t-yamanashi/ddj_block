@@ -29,14 +29,15 @@ defmodule Game do
         [collided?(x1, y1, w1, h1, x2, y2, w2, h2), judgement]
       end)
 
-      collided = judgments
-      |> Enum.any?(fn [x, _] ->  x end)
+    collided =
+      judgments
+      |> Enum.any?(fn [x, _] -> x end)
 
-      judgments =
-        judgments
-        |> Enum.filter(fn [x, _] ->  !x end)
-        |> Enum.map(fn [_, x] -> x end)
+    judgments =
+      judgments
+      |> Enum.filter(fn [x, _] -> !x end)
+      |> Enum.map(fn [_, x] -> x end)
 
-      {collided, judgments}
+    {collided, judgments}
   end
 end

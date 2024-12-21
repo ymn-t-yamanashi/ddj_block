@@ -21,7 +21,7 @@ defmodule DdjBlock do
     end)
 
     init_window(800, 800, "DdjBlock")
-    main_loop(true)
+    main_loop(true, nil)
   end
 
   def socket_loop(socket) do
@@ -37,21 +37,33 @@ defmodule DdjBlock do
     socket_loop(socket)
   end
 
-  defp main_loop(true) do
+  defp main_loop(true, data) do
+    data = Block.main(data)
+    draw_list = data.wall ++ data.blocks ++ data.player ++ data.ball
+
     begin_drawing()
     clear_background(%{r: 0, g: 0, b: 0, a: 0})
-    draw()
+    draw(draw_list)
     end_drawing()
 
     Process.sleep(@sleep)
-    main_loop(!window_should_close())
+    main_loop(!window_should_close(), data)
   end
 
-  defp main_loop(_), do: nil
+  defp main_loop(_, data), do: nil
 
   defp draw() do
     rectangle = %Rectangle{x: get_state(), y: 700.0, width: 100.0, height: 50.0}
     draw_rectangle_lines_ex(rectangle, 1, @color)
+  end
+
+  defp draw(draw_list) do
+    draw_list
+    |> Enum.each(fn draw ->
+      [x, y, w, h] = draw
+      rectangle = %Rectangle{x: x, y: y, width: w, height: h}
+      draw_rectangle_lines_ex(rectangle, 1, @color)
+    end)
   end
 
   def send_data(socket, data) do
