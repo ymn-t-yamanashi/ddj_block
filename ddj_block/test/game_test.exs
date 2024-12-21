@@ -80,4 +80,34 @@ defmodule GameTest do
 
     refute Game.collided?(x1, y1, w1, h1, judgments)
   end
+
+  test "collided_with_filter false and true return true" do
+    x1 = 100
+    y1 = 100
+    w1 = 10
+    h1 = 10
+
+    judgments = [
+      [111, 111, 10, 10],
+      [91, 91, 10, 10]
+    ]
+
+    assert Game.collided_with_filter(x1, y1, w1, h1, judgments) ==
+      {true, [ [111, 111, 10, 10]]}
+  end
+
+  test "collided_with_filter false and false return false" do
+    x1 = 100
+    y1 = 100
+    w1 = 10
+    h1 = 10
+
+    judgments = [
+      [89, 89, 10, 10],
+      [89, 111, 10, 10]
+    ]
+
+    assert Game.collided_with_filter(x1, y1, w1, h1, judgments) ==
+             {false, [[89, 89, 10, 10], [89, 111, 10, 10]]}
+  end
 end

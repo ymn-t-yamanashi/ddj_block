@@ -20,4 +20,23 @@ defmodule Game do
     end)
     |> Enum.any?()
   end
+
+  def collided_with_filter(x1, y1, w1, h1, judgments) do
+    judgments =
+      judgments
+      |> Enum.map(fn judgement ->
+        [x2, y2, w2, h2] = judgement
+        [collided?(x1, y1, w1, h1, x2, y2, w2, h2), judgement]
+      end)
+
+      collided = judgments
+      |> Enum.any?(fn [x, _] ->  x end)
+
+      judgments =
+        judgments
+        |> Enum.filter(fn [x, _] ->  !x end)
+        |> Enum.map(fn [_, x] -> x end)
+
+      {collided, judgments}
+  end
 end
